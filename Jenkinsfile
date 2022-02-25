@@ -13,7 +13,6 @@ pipeline {
             }
             steps {
               echo 'test1'
-                }
             }
         }
       stage ('Pull request for Main branch pull') {
