@@ -1,44 +1,15 @@
 pipeline {
-    agent {label 'pathfinder'}
-    options {
-        buildDiscarder logRotator( 
-                    daysToKeepStr: '7', 
-                    numToKeepStr: '10'
-            )
-            }
-  stages {
-        stage ('feature branch testing: Maven') {
-          when {
-                branch pattern: "feature-\\d+", comparator: "REGEXP"
-            }
+    agent any
+    
+    triggers {
+        cron(env.BRANCH_NAME == 'main' ? 'H/5 * * * *' : '')
+    }
+    
+    stages {
+        stage ('hello') {
             steps {
-              echo 'test1'
-                }
+                echo 'hello'
             }
-        }
-      stage ('Pull request for Main branch pull') {
-         when {
-                changeRequest target: "main"
-            }
-        steps {
-          echo 'test2'
-        }
-      }
-      stage('Verify branch syntax') {
-            when {
-                not {
-                    branch "main"
-                }
-                not {
-                    branch pattern: "feature-\\d+", comparator: "REGEXP"
-                }
-                not {
-                    branch "PR-*"
-                }
-            }
-            steps {
-                error "invalid branch name - expected feature-#"
-           }
         }
     }
-}
+}       
