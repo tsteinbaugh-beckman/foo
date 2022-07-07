@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     triggers {
-        cron(env.BRANCH_NAME == 'main' ? 'H/5 * * * *' : '')
+        cron(env.BRANCH_NAME == 'main' || env.RANC_NAME == 'master' ? 'H/5 * * * *' : '')
     }
     
     stages {
