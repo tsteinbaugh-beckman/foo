@@ -2,14 +2,22 @@ pipeline {
     agent any
     
     stages {
-        stage ('hello') {
+        stage ('hello1') {
+            when {
+                triggeredBy 'TimerTrigger'
+            }
             steps {
-                echo 'hello'
+                echo 'hello, working'
             }
         }
-        stage ('build next foo2') {
+        stage ('hello2') {
             steps {
-                build job: 'test/foo2/main', propagate: false, wait: false
+                when {
+                    not {
+                        triggeredBy 'TimerTrigger'
+                    }
+                }
+                echo 'hello, not working'
             }
         }
     }
