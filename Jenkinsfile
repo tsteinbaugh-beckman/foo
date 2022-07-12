@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('build next foo2') {
             steps {
-                build: 'foo2'
+                build job: 'foo2'
             }
         }
     }
