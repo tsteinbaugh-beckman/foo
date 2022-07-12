@@ -15,12 +15,12 @@ pipeline {
             }
         }
         stage ('hello2') {
-            steps {
-                when {
-                    not {
-                        triggeredBy 'TimerTrigger'
-                    }
+            when {
+                not {
+                    triggeredBy 'TimerTrigger'
                 }
+            }
+            steps {
                 echo 'hello, not working'
             }
         }
