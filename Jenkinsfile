@@ -1,28 +1,16 @@
 pipeline {
     agent any
     
-    triggers {
-        cron ('H/5 * * * *')
-    }
-    
     stages {
-        stage ('hello1') {
-            when {
-                triggeredBy 'TimerTrigger'
-            }
+        stage ('hello') {
             steps {
-                echo 'hello, working'
+                echo 'hello'
             }
         }
-        stage ('hello2') {
-            when {
-                not {
-                    triggeredBy 'TimerTrigger'
-                }
-            }
+        stage ('build next foo2') {
             steps {
-                echo 'hello, not working'
+                build job: 'test/foo2/main', propagate: false, wait: false
             }
         }
     }
-}       
+}    
