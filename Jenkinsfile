@@ -14,6 +14,7 @@ pipeline {
                 }
                 else {
                     build job: 'test/foo2/main', propagate: false, wait: false
+                }
             }
         }
     }
