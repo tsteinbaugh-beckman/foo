@@ -12,7 +12,7 @@ pipeline {
                 try {
                     build job: "test/foo2/${env.BRANCH_NAME}", propagate: false, wait: false
                 }
-                catch {
+                catch (err) {
                     build job: 'test/foo2/main', propagate: false, wait: false
                 }
             }
