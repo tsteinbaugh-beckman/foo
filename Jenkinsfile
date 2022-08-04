@@ -9,13 +9,11 @@ pipeline {
         }
         stage ('build next foo2') {
             steps {
-                script {
-                    if ("test/foo2/${env.BRANCH_NAME}") {
-                        build job: "test/foo2/${env.BRANCH_NAME}", propagate: false, wait: false
-                    }
-                    else {
-                        build job: 'test/foo2/main', propagate: false, wait: false
-                    }
+                try {
+                    build job: "test/foo2/${env.BRANCH_NAME}", propagate: false, wait: false
+                }
+                catch {
+                    build job: 'test/foo2/main', propagate: false, wait: false
                 }
             }
         }
