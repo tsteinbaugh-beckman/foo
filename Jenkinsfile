@@ -10,7 +10,7 @@ pipeline {
         stage ('build next foo2') {
             steps {
                 script {
-                    if (true) {
+                    if (false) {
                         build job: "test/foo2/${env.BRANCH_NAME}", propagate: false, wait: false
                     }
                     else {
