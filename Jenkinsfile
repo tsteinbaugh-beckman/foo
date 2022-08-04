@@ -11,6 +11,8 @@ pipeline {
             steps {
                 script {
                     if (expression {return "test/foo2/${env.BRANCH_NAME}"}) {
+                        echo "test/foo2/${env.BRANCH_NAME}"
+                        echo expression {return "test/foo2/${env.BRANCH_NAME}"}
                         build job: "test/foo2/${env.BRANCH_NAME}", propagate: false, wait: false
                     }
                     else {
