@@ -11,10 +11,18 @@ pipeline {
             steps {
                 script {
                     try {
-                        build job: "test/foo2/${env.BRANCH_NAME}", propagate: false, wait: false
+                        build(
+                            job: "test/foo2/${env.BRANCH_NAME}", 
+                            propagate: false, 
+                            wait: false,
+                            parameters: originalFeatureBranch = env.BRANCH_NAME)
                     }
                     catch (err) {
-                        build job: 'test/foo2/main', propagate: false, wait: false
+                        build(
+                            job: 'test/foo2/main', 
+                            propagate: false, 
+                            wait: false,
+                            parameters: originalFeatureBranch = env.BRANCH_NAME)
                     }
                 }
             }
