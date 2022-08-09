@@ -5,7 +5,7 @@ pipeline {
         stage ('hello') {
             steps {
                 script {
-                    echo "${CHANGE_ID}"
+                    echo "${env.CHANGE_ID}"
                 }
             }
         }
