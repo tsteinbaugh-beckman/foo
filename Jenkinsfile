@@ -5,8 +5,8 @@ pipeline {
         stage ('hello') {
             steps {
                 script {
-                    var = "123456789"
-                    while (var !=~ /(7)$/) {
+                    var = "123456789999"
+                    while (var =~ /(9)$/) {
                         var = var.substring(0, var.length() - 1)
                         println var
                     }
