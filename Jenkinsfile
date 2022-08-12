@@ -5,7 +5,7 @@ pipeline {
         stage ('hello') {
             steps {
                 script {
-                    var = "123456789999.0.0564644654"
+                    var = "123456789999.0.0564644654fsdfsdfdsfsfsd"
                     while (!var ==~ /\d+\.\d+\.\d+/) {
                         println "before: " + var
                         var = var.substring(0, var.length() - 1)
